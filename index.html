@@ -7,27 +7,59 @@
 </head>
 <body>
     <h1>MatchMaker</h1>
-<label>Nickelback is the greatest rock band of all time.</label><br />
-	<select id="q1">
-		<option value="5">Strongly Agree</option>
-		<option value="4">Agree</option>
-		<option value="3">Neither agree nor disagree</option>
-		<option value="2">Disagree</option>
-		<option value="1">Strongly Disagree</option>
-	</select>
-	<br /><br />
 
-	<label>Android phones are better than iPhones.</label><br />
-	<select id="q2">
-		<option value="5">Strongly Agree</option>
-		<option value="4">Agree</option>
-		<option value="3">Neither agree nor disagree</option>
-		<option value="2">Disagree</option>
-		<option value="1">Strongly Disagree</option>
-	</select>
 
-	<br /><br /><br />
-	<button onclick="calculateCompatibility()">Calculate Compatibility</button>
-	<p id="compatibility"></p>
+<label>Cayman is the best in the Carribean</label><br />
+<select id="q1">
+    <option value="5">Strongly Agree</option>
+    <option value="4">Agree</option>
+    <option value="3">Neither agree nor disagree</option>
+    <option value="2">Disagree</option>
+    <option value="1">Strongly Disagree</option>
+</select>
+
+<br /><br />
+
+<label>Coca Cola is the best soda</label><br />
+<select id="q2">
+    <option value="5">Strongly Agree</option>
+    <option value="4">Agree</option>
+    <option value="3">Neither agree nor disagree</option>
+    <option value="2">Disagree</option>
+    <option value="1">Strongly Disagree</option>
+</select>
+
+<br /><br /><br />
+
+<button onclick="calculateCompatibility()">Calculate Compatibility</button>
+
+<p id="compatibility"></p>
+
+<script>
+function calculateCompatibility() {
+    // Get values
+    let q1 = parseInt(document.getElementById("q1").value);
+    let q2 = parseInt(document.getElementById("q2").value);
+
+    // Calculate average
+    let average = (q1 + q2) / 2;
+
+    // Convert to percentage
+    let percentage = (average / 5) * 100;
+
+    // Create message based on score
+    let message = "";
+    if (percentage > 80) {
+        message = "Great match!";
+    } else if (percentage > 50) {
+        message = "Not bad!";
+    } else {
+        message = "Opposites attract?";
+    }
+
+    // Display result
+    document.getElementById("compatibility").innerText =
+        "Compatibility Score: " + percentage.toFixed(0) + "% - " + message;
+}
 </body>
 </html>
