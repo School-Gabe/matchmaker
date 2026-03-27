@@ -20,42 +20,45 @@
     </select>
 
     <br /><br />
-     <label for="q1">Roschach is the best character in Watchmen</label><br />
-    <select id="q1">
-        <option value="" disabled selected>Select an answer</option>
-        <option value="5">Strongly Agree</option>
-        <option value="4">Agree</option>
-        <option value="3">Neither agree nor disagree</option>
-        <option value="2">Disagree</option>
-        <option value="1">Strongly Disagree</option>
-    </select>
 
-    <br /><br />
-     <label for="q1">Rock is better than Rap</label><br />
-    <select id="q1">
-        <option value="" disabled selected>Select an answer</option>
-        <option value="5">Strongly Agree</option>
-        <option value="4">Agree</option>
-        <option value="3">Neither agree nor disagree</option>
-        <option value="2">Disagree</option>
-        <option value="1">Strongly Disagree</option>
-    </select>
-
-    <br /><br />
-     <label for="q1">Slipknot is mid after High School</label><br />
-    <select id="q1">
-        <option value="" disabled selected>Select an answer</option>
-        <option value="5">Strongly Agree</option>
-        <option value="4">Agree</option>
-        <option value="3">Neither agree nor disagree</option>
-        <option value="2">Disagree</option>
-        <option value="1">Strongly Disagree</option>
-    </select>
-
-    <br /><br />
-
-    <label for="q2">Coca Cola is the best soda</label><br />
+    <label for="q2">Rorschach is the best character in Watchmen</label><br />
     <select id="q2">
+        <option value="" disabled selected>Select an answer</option>
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree nor disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br /><br />
+
+    <label for="q3">Rock is better than Rap</label><br />
+    <select id="q3">
+        <option value="" disabled selected>Select an answer</option>
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree nor disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br /><br />
+
+    <label for="q4">Slipknot is mid after High School</label><br />
+    <select id="q4">
+        <option value="" disabled selected>Select an answer</option>
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree nor disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br /><br />
+
+    <label for="q5">Coca Cola is the best soda</label><br />
+    <select id="q5">
         <option value="" disabled selected>Select an answer</option>
         <option value="5">Strongly Agree</option>
         <option value="4">Agree</option>
@@ -72,17 +75,25 @@
 
     <script>
         function calculateCompatibility() {
-            let q1 = parseInt(document.getElementById("q1").value);
-            let q2 = parseInt(document.getElementById("q2").value);
+            let values = [];
 
-            // Validation
-            if (isNaN(q1) || isNaN(q2)) {
-                document.getElementById("compatibility").innerText =
-                    "Please answer all questions!";
-                return;
+            // Loop through all 5 questions
+            for (let i = 1; i <= 5; i++) {
+                let val = parseInt(document.getElementById("q" + i).value);
+
+                if (isNaN(val)) {
+                    document.getElementById("compatibility").innerText =
+                        "Please answer all questions!";
+                    return;
+                }
+
+                values.push(val);
             }
 
-            let average = (q1 + q2) / 2;
+            // Calculate average
+            let sum = values.reduce((a, b) => a + b, 0);
+            let average = sum / values.length;
+
             let percentage = (average / 5) * 100;
 
             let message = "";
@@ -98,7 +109,6 @@
                 "Compatibility Score: " + percentage.toFixed(0) + "% - " + message;
         }
 
-        // Better event handling (instead of inline onclick)
         document.getElementById("calcBtn").addEventListener("click", calculateCompatibility);
     </script>
 
